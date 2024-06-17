@@ -1,6 +1,7 @@
 import { Routes } from "@/constants/routes";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import StyledButton from "./component/styledButton";
 
 const Register = () => {
   const [email, setEmail] = useState<string>("");
@@ -67,14 +68,9 @@ const Register = () => {
         </div>
         {errMsg && <p className="text-red-500 pb-2">*{errMsg}</p>}
         <div className="flex items-center justify-between">
-          <button
-            className="w-full bg-green-500 text-white p-2 rounded"
-            type="submit"
-            onClick={() => registerUser()}
-          >
-            Register
-          </button>
+          <StyledButton text={"Register"} onClick={() => registerUser()} customStyle={"bg-green-500 hover:bg-green-700"} type={"submit"} />
         </div>
+        <p>After successfully register will be redirected to log in</p>
       </form>
     </div>
   );

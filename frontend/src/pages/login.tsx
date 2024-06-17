@@ -2,6 +2,7 @@ import { Routes } from "@/constants/routes";
 import { useProfile } from "@/hooks/useProfile";
 import { useRouter } from "next/router";
 import { useState } from "react";
+import StyledButton from "./component/styledButton";
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
@@ -9,7 +10,6 @@ const Login = () => {
   const [errMsg, setErrMsg] = useState<string>("")
   const router = useRouter();
   const { setProfileAndStore } = useProfile()
-
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,13 +70,7 @@ const Login = () => {
         </div>
         {errMsg && <p className="text-red-500 pb-2">*{errMsg}</p>}
         <div className="flex items-center justify-between">
-          <button
-            className="w-full bg-blue-500 text-white p-2 rounded"
-            type="submit"
-            onClick={() => loginUser()}
-          >
-            Login
-          </button>
+          <StyledButton text={"Login"} onClick={() => loginUser()} customStyle={"bg-sky-500 hover:bg-sky-700"} />
         </div>
       </form>
     </div>

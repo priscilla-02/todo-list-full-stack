@@ -1,5 +1,6 @@
 import { Routes } from '@/constants/routes'
 import { useRouter } from 'next/router'
+import StyledButton from './component/styledButton'
 
 const LandingPage = () => {
   const router = useRouter()
@@ -8,18 +9,8 @@ const LandingPage = () => {
     <>
       <div className="flex flex-col gap-8 pt-60">
         <header className="text-5xl">To-do List</header>
-        <button
-          className="w-full bg-green-500 text-white p-2 rounded"
-          onClick={() => router.push(Routes.REGISTER)}
-        >
-          Register
-        </button>
-        <button
-          className="w-full bg-blue-500 text-white p-2 rounded"
-          onClick={() => router.push(Routes.LOGIN)}
-        >
-          Login
-        </button>
+        <StyledButton text={"Register"} onClick={() => router.push(Routes.REGISTER)} customStyle={"bg-green-500 hover:bg-green-700"} />
+        <StyledButton text={"Login"} onClick={() => router.push(Routes.LOGIN)} customStyle={"bg-sky-500 hover:bg-sky-700"} />
       </div >
     </>
   )

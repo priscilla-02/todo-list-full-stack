@@ -13,21 +13,27 @@ interface IProps {
 
 const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
   const { profile } = useProfile()
-  const removeToDoItem = async (id: number) => {
-    try {
-      const res = await fetch(`http://localhost:5000/deleteItem/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (!res.ok) {
-        throw new Error("Failed to delete to-do item");
-      }
 
-      props.fetchTodos()
-    } catch (error) {
-      console.error("Error deleting to-do item:", error);
+
+  const removeToDoItem = async (id: number) => {
+
+    if (profile && profile.user_id && profile.email) {
+      try {
+        const res = await fetch(`http://localhost:5000/deleteItem/${id}`, {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ user_id: profile.user_id, email: profile.email }),
+        });
+        if (!res.ok) {
+          throw new Error("Failed to delete to-do item");
+        }
+
+        props.fetchTodos()
+      } catch (error) {
+        console.error("Error deleting to-do item:", error);
+      }
     }
   };
 
@@ -79,12 +85,12 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
 
   return (
     <div
-      className="flex flex-row w-[50vw] justify-between items-center m-4"
+      className="flex flex-row w-full justify-between items-center py-4 px-8"
       key={props.todo.id}
     >
       <div className="flex items-center">
         <button
-          className={`rounded-lg cursor-pointer m-2 bg-white h-8 w-8 flex items-center justify-center`}
+          className={`rounded-lg cursor-pointer m-2 bg-white hover:bg-gray-400 h-8 w-8 flex items-center justify-center`}
           onClick={() =>
             props.todo.completed
               ? markAsIncomplete(props.todo.id)

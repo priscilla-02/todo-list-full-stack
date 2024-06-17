@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import TodoItem from "./component/todoItem";
 import { useNotification } from "@/hooks/useNotifcation";
 import { useProfile } from "@/hooks/useProfile";
+import StyledButton from "./component/styledButton";
+import Logout from "./component/logout";
 
 export interface IToDo {
   id: number;
@@ -75,6 +77,7 @@ const HomePage = () => {
 
   return (
     <div className="bg-gray-500 min-h-screen">
+      <Logout />
       <header className="flex flex-col justify-center items-center gap-4 pt-20">
         <h1 className="text-3xl">To-do Lists</h1>
         <div className="flex gap-4">
@@ -86,25 +89,23 @@ const HomePage = () => {
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
           />
-          <button
-            className="bg-sky-500 rounded-lg px-4 py-2"
-            onClick={handleAddItem}
-          >
-            Add
-          </button>
+          <StyledButton text={"Add"} onClick={() => handleAddItem()} customStyle={"bg-sky-500 hover:bg-sky-700 w-[80px]"} />
         </div>
       </header>
-      <section className="bg-gray-700 mt-20 w-full flex justify-center items-center">
-        <ul>
+      <div className="w-full flex justify-center">
+        <section className=" bg-gray-700 mt-20 w-[80vw] tablet:w-[30vw] flex flex-col justify-center items-center rounded-lg">
+
           {todoList && todoList.length > 0 ? (
             todoList.map((todo: IToDo) => (
               <TodoItem fetchTodos={fetchTodos} todo={todo} setTodoList={setTodoList} key={todo.id} />
             ))
           ) : (
-            <div>No to-do items</div>
+            <div className="flex flex-row w-[80vw] tablet:w-[50vw] justify-between items-center m-4">No to-do items</div>
           )}
-        </ul>
-      </section>
+
+        </section>
+      </div>
+
     </div>
   );
 };

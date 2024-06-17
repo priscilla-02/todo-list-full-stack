@@ -28,6 +28,11 @@ const updateTodoSchema = z.object({
     email: z.string(),
 });
 
+const removeTodoSchema = z.object({
+    user_id: z.number(),
+    email: z.string(),
+});
+
 app.get("/checkDbConnection", async (req, res) => {
     try {
         await prismaClient.$connect();
@@ -129,8 +134,9 @@ app.get("/fetchToDo", async (req, res) => {
 app.delete("/deleteItem/:id", async (req, res) => {
     const { id } = req.params;
     try {
+        const { email, user_id } = removeTodoSchema.parse(req.body);
         const deletedTodo = await prismaClient.todo_list.delete({
-            where: { id: Number(id) },
+            where: { id: Number(id), email: email, user_id: user_id },
         });
         res.status(200).json({
             message: "Todo item deleted successfully",
