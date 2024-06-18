@@ -86,7 +86,7 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
 
   return (
     <div
-      className="flex flex-row w-full justify-between items-center py-4 px-8"
+      className="flex flex-row w-full justify-between items-center py-4 px-8 break-words"
       key={props.todo.id}
     >
       <div className="flex items-center">
@@ -100,11 +100,11 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
         >
           {props.todo.completed ? <TiTick size={30} color="green" /> : ""}
         </button>
-        <p className="ml-2">{props.todo.item}</p>
+        <p className="m-2 w-[30vw] tablet:w-[36vw] desktop:w-[17vw]">{props.todo.item}</p>
       </div>
       <div className="flex">
         <button
-          className="bg-red-500 hover:bg-red-700 h-10 w-10 flex justify-center items-center  rounded-lg cursor-pointer"
+          className="bg-red-500 hover:bg-red-700 h-10 w-10 flex justify-center items-center rounded-lg cursor-pointer"
           onClick={() => removeToDoItem(props.todo.id)}
         >
           <RiDeleteBin2Line size={20} />

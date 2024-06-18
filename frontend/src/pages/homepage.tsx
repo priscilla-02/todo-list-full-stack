@@ -108,7 +108,7 @@ const HomePage = () => {
       </section>
 
       <section className="w-full flex justify-center pb-20">
-        <div className=" bg-gray-600 mt-16 w-[80vw] tablet:w-[30vw] flex flex-col justify-center items-center rounded-lg">
+        <div className=" bg-gray-600 mt-16 w-[80vw] tablet:w-[60vw] desktop:w-[30vw] flex flex-col justify-center items-center rounded-lg">
 
           {todoList && todoList.length > 0 ? (
             todoList.map((todo: IToDo) => (
