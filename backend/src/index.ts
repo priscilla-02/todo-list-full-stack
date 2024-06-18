@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import { prismaClient } from "./db";
 import { z } from "zod";
+
 const bcrypt = require("bcrypt");
 const app = express();
 const port = 5000;
@@ -172,3 +173,5 @@ app.patch("/completeItem/:id", async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
+export default app;

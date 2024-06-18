@@ -9,12 +9,12 @@ interface IButton {
 const StyledButton: React.FC<IButton> = (props: IButton): JSX.Element => {
   return (
     <button
-      className={`w-full text-white p-2 rounded ${props.customStyle}`}
+      className={`w-full p-2 rounded ${props.customStyle}`}
       onClick={props.onClick}
       type={props.type}
     >
-      {props.text}
-      {props.children && <span className="inline-block ml-2">{props.children}</span>}
+      {props.text && <p>{props.text}</p>}
+      {props.children && <span className="inline-block">{props.children}</span>}
 
     </button>
   )

@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
-import TodoItem from "./component/todoItem";
+import React from 'react'
+import { useEffect, useState } from "react";
 import { useNotification } from "@/hooks/useNotifcation";
 import { useProfile } from "@/hooks/useProfile";
+import TodoItem from "./component/todoItem";
 import StyledButton from "./component/styledButton";
 import Logout from "./component/logout";
 import NotificationsPopup from "./component/notificatipnPopup";
+import { TiPlus, TiTick } from "react-icons/ti";
 
 export interface IToDo {
   id: number;
@@ -15,6 +17,7 @@ export interface IToDo {
 const HomePage = () => {
   const [todoList, setTodoList] = useState<IToDo[] | null>(null);
   const [newTodo, setNewTodo] = useState<string>("");
+  const [clickToAdd, setClickToAdd] = useState<boolean>(false);
   const { setNotification } = useNotification()
   const { profile } = useProfile()
 
@@ -62,10 +65,16 @@ const HomePage = () => {
 
       const data = await res.json()
 
+
       if (!res.ok) {
         setNotification({ text: data.error[0].message })
         throw new Error("Failed to add to-do item");
       }
+
+      setClickToAdd(true);
+      setTimeout(() => {
+        setClickToAdd(false);
+      }, 2000);
 
       setNewTodo("");
       fetchTodos()
@@ -80,8 +89,9 @@ const HomePage = () => {
     <div className="bg-gray-500 min-h-screen">
       <NotificationsPopup />
       <Logout />
-      <header className="flex flex-col justify-center items-center gap-4 pt-20">
-        <h1 className="text-3xl">To-do Lists</h1>
+
+      <section className="flex flex-col justify-center items-center gap-10 pt-28">
+        <header>To-Do List</header>
         <div className="flex gap-4">
           <input
             className="px-4 text-gray-600 rounded-lg"
@@ -91,24 +101,27 @@ const HomePage = () => {
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
           />
-          <StyledButton text={"Add"} onClick={() => handleAddItem()} customStyle={"bg-sky-500 hover:bg-sky-700 w-[80px]"} />
+          <StyledButton onClick={() => handleAddItem()} customStyle={"bg-sky-500 hover:bg-sky-700 flex justify-center items-center"}>
+            {clickToAdd ? <TiTick size={30} /> : <TiPlus size={25} />}
+          </StyledButton>
         </div>
-      </header>
-      <div className="w-full flex justify-center">
-        <section className=" bg-gray-700 mt-20 w-[80vw] tablet:w-[30vw] flex flex-col justify-center items-center rounded-lg">
+      </section>
+
+      <section className="w-full flex justify-center">
+        <div className=" bg-gray-600 mt-16 w-[80vw] tablet:w-[30vw] flex flex-col justify-center items-center rounded-lg">
 
           {todoList && todoList.length > 0 ? (
             todoList.map((todo: IToDo) => (
               <TodoItem fetchTodos={fetchTodos} todo={todo} setTodoList={setTodoList} key={todo.id} />
             ))
           ) : (
-            <div className="flex flex-row justify-between items-center m-4">No to-do items...</div>
+            <h1 className="flex flex-row justify-between items-center m-4">No To-Do Items...</h1>
           )}
 
-        </section>
-      </div>
-
+        </div>
+      </section>
     </div>
   );
 };
+
 export default HomePage;

@@ -1,7 +1,8 @@
+import { useProfile } from "@/hooks/useProfile";
 import { IToDo } from "@/pages/homepage";
 import { TiTick } from "react-icons/ti";
 import { RiDeleteBin2Line } from "react-icons/ri";
-import { useProfile } from "@/hooks/useProfile";
+
 
 
 interface IProps {
@@ -99,11 +100,11 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
         >
           {props.todo.completed ? <TiTick size={30} color="green" /> : ""}
         </button>
-        <span> {props.todo.item}</span>
+        <p className="ml-2">{props.todo.item}</p>
       </div>
       <div className="flex">
         <button
-          className="bg-red-500 hover:bg-red-700 justify-center items-center rounded-lg cursor-pointer p-2 m-2"
+          className="bg-red-500 hover:bg-red-700 h-10 w-10 flex justify-center items-center  rounded-lg cursor-pointer"
           onClick={() => removeToDoItem(props.todo.id)}
         >
           <RiDeleteBin2Line size={20} />
