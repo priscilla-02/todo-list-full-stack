@@ -14,8 +14,6 @@ const StyledButton: React.FC<IButton> = (props: IButton): JSX.Element => {
       onClick={props.onClick}
       type={props.type}
     >
-      {/* {props.text && <p>{props.text}</p>}
-      {props.children && <span className="inline-block">{props.children}</span>} */}
       {props.loading ? (
         <span className="inline-block">{props.children}</span>
       ) : (

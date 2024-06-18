@@ -51,7 +51,7 @@ const Form: React.FC<IForm> = (props: IForm): JSX.Element => {
         </div>
         {props.errMsg && <p className="text-red-500 mt-6">*{props.errMsg}</p>}
         <div className="flex items-center justify-between mt-8">
-          <StyledButton loading={props.loading} text={props.buttonText} onClick={() => props.onClick()} customStyle={`bg-green-500 hover:bg-green-700 ${!props.email || !props.password ? 'opacity-50' : ''}`} type={"submit"}>
+          <StyledButton loading={props.loading} text={props.buttonText} onClick={() => props.onClick()} customStyle={`h-[55px] bg-green-500 hover:bg-green-700 ${!props.email || !props.password ? 'opacity-50' : ''}`} type={"submit"}>
             {props.loading && <Bars height={30} width={30} />}
           </StyledButton>
         </div>

@@ -25,13 +25,14 @@ const Register = () => {
         const data = await res.json()
 
         if (!res.ok) {
-          setErrMsg(data.error)
+          setErrMsg(data.error[0].message)
           setLoading(false);
           throw new Error("Failed to register");
         }
+
         setTimeout(() => {
           router.push(Routes.LOGIN)
-        }, 3000);
+        }, 2000);
       } catch (error) {
         setLoading(false);
         console.error("register user error", error);

@@ -26,16 +26,20 @@ const Login = () => {
         });
         const data = await res.json()
 
-
         if (!res.ok) {
-          setErrMsg(data.error)
+
+          data.error[0].message ? setErrMsg(data.error[0].message) :
+            data.error ? setErrMsg(data.error)
+              : setErrMsg("")
+
           setLoading(false);
           throw new Error("Failed to login");
         }
+
         setProfileAndStore({ user_id: data.user.user_id, email: email })
         setTimeout(() => {
           router.push(Routes.HOMEPAGE)
-        }, 3000);
+        }, 2000);
 
       } catch (error) {
         setLoading(false);
