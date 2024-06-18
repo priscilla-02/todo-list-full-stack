@@ -17,7 +17,7 @@ const userSchema = z.object({
 });
 
 const todoSchema = z.object({
-    item: z.string().min(1, { message: "Cannot add empty to-do item" }),
+    item: z.string().min(1, { message: "Please enter a value for to-do item" }),
     user_id: z.number(),
     email: z.string(),
 });

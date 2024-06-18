@@ -41,7 +41,7 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
 
     if (profile && profile.user_id && profile.email) {
       try {
-        const res = await fetch(`/api/completeItem/${id}`, {
+        const res = await fetch(`http://localhost:5000/completeItem/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
@@ -64,7 +64,7 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
   const markAsIncomplete = async (id: number) => {
     if (profile && profile.email && profile.user_id) {
       try {
-        const res = await fetch(`/api/completeItem/${id}`, {
+        const res = await fetch(`http://localhost:5000/completeItem/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",

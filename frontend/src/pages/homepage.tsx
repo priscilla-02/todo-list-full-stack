@@ -4,6 +4,7 @@ import { useNotification } from "@/hooks/useNotifcation";
 import { useProfile } from "@/hooks/useProfile";
 import StyledButton from "./component/styledButton";
 import Logout from "./component/logout";
+import NotificationsPopup from "./component/notificatipnPopup";
 
 export interface IToDo {
   id: number;
@@ -77,6 +78,7 @@ const HomePage = () => {
 
   return (
     <div className="bg-gray-500 min-h-screen">
+      <NotificationsPopup />
       <Logout />
       <header className="flex flex-col justify-center items-center gap-4 pt-20">
         <h1 className="text-3xl">To-do Lists</h1>
@@ -100,7 +102,7 @@ const HomePage = () => {
               <TodoItem fetchTodos={fetchTodos} todo={todo} setTodoList={setTodoList} key={todo.id} />
             ))
           ) : (
-            <div className="flex flex-row w-[80vw] tablet:w-[50vw] justify-between items-center m-4">No to-do items</div>
+            <div className="flex flex-row justify-between items-center m-4">No to-do items...</div>
           )}
 
         </section>
