@@ -5,6 +5,7 @@ import Form from "./component/form";
 
 const Register = () => {
   const router = useRouter();
+  const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [errMsg, setErrMsg] = useState<string>("")
@@ -12,6 +13,8 @@ const Register = () => {
   const registerUser = async () => {
     if (email && password) {
       try {
+        setErrMsg("")
+        setLoading(true)
         const res = await fetch(`http://localhost:5000/register`, {
           method: "POST",
           headers: {
@@ -23,18 +26,21 @@ const Register = () => {
 
         if (!res.ok) {
           setErrMsg(data.error)
+          setLoading(false);
           throw new Error("Failed to register");
         }
-        router.push(Routes.LOGIN)
-
+        setTimeout(() => {
+          router.push(Routes.LOGIN)
+        }, 3000);
       } catch (error) {
+        setLoading(false);
         console.error("register user error", error);
       }
     }
   };
 
   return (
-    <Form header={"Register"} email={email} setEmail={setEmail} password={password} setPassword={setPassword} errMsg={errMsg} setErrMsg={setErrMsg} buttonText={"Register"} onClick={registerUser} />
+    <Form loading={loading} header={"Register"} email={email} setEmail={setEmail} password={password} setPassword={setPassword} errMsg={errMsg} setErrMsg={setErrMsg} buttonText={"Register"} onClick={registerUser} />
   );
 };
 

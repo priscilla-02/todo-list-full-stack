@@ -15,7 +15,7 @@ const Logout = () => {
 
   return (
     <div>
-      <StyledButton onClick={() => handleLogout()} customStyle={"absolute top-4 right-10 bg-sky-500 hover:bg-sky-700 max-w-[45px] flex justify-center items-center"}>
+      <StyledButton loading={true} onClick={() => handleLogout()} customStyle={"absolute top-4 right-10 bg-sky-500 hover:bg-sky-700 max-w-[45px] flex justify-center items-center"}>
         <TbLogout size={20} />
       </StyledButton>
     </div>

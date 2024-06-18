@@ -92,7 +92,7 @@ const HomePage = () => {
 
       <section className="flex flex-col justify-center items-center gap-10 pt-28">
         <header>To-Do List</header>
-        <div className="flex gap-4">
+        <div className="flex gap-4 px-4">
           <input
             className="px-4 text-gray-600 rounded-lg"
             type="text"
@@ -101,13 +101,13 @@ const HomePage = () => {
             value={newTodo}
             onChange={(e) => setNewTodo(e.target.value)}
           />
-          <StyledButton onClick={() => handleAddItem()} customStyle={"bg-sky-500 hover:bg-sky-700 flex justify-center items-center"}>
+          <StyledButton loading={true} onClick={() => handleAddItem()} customStyle={"bg-sky-500 hover:bg-sky-700 flex justify-center items-center max-w-[40px]"}>
             {clickToAdd ? <TiTick size={30} /> : <TiPlus size={25} />}
           </StyledButton>
         </div>
       </section>
 
-      <section className="w-full flex justify-center">
+      <section className="w-full flex justify-center pb-20">
         <div className=" bg-gray-600 mt-16 w-[80vw] tablet:w-[30vw] flex flex-col justify-center items-center rounded-lg">
 
           {todoList && todoList.length > 0 ? (
