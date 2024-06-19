@@ -1,4 +1,4 @@
-import { useProfile } from "@/hooks/useProfile";
+import { Profile } from "@/hooks/useProfile";
 import { IToDo } from "@/pages/homepage";
 import { TiTick } from "react-icons/ti";
 import { RiDeleteBin2Line } from "react-icons/ri";
@@ -10,22 +10,21 @@ interface IProps {
   todo: IToDo;
   setTodoList: React.Dispatch<React.SetStateAction<IToDo[] | null>>;
   key: number
+  profile: Profile | undefined
 }
 
 const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
-  const { profile } = useProfile()
-
 
   const removeToDoItem = async (id: number) => {
 
-    if (profile && profile.user_id && profile.email) {
+    if (props.profile && props.profile.user_id && props.profile.email) {
       try {
-        const res = await fetch(`http://localhost:5000/deleteItem/${id}`, {
+        const res = await fetch(`http://localhost:5000/todos/deleteItem/${id}`, {
           method: "DELETE",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ user_id: profile.user_id, email: profile.email }),
+          body: JSON.stringify({ user_id: props.profile.user_id, email: props.profile.email }),
         });
         if (!res.ok) {
           throw new Error("Failed to delete to-do item");
@@ -40,14 +39,14 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
 
   const markAsComplete = async (id: number) => {
 
-    if (profile && profile.user_id && profile.email) {
+    if (props.profile && props.profile.user_id && props.profile.email) {
       try {
-        const res = await fetch(`http://localhost:5000/completeItem/${id}`, {
+        const res = await fetch(`http://localhost:5000/todos/completeItem/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ completed: true, user_id: profile.user_id, email: profile.email }),
+          body: JSON.stringify({ completed: true, user_id: props.profile.user_id, email: props.profile.email }),
         });
         if (!res.ok) {
           throw new Error("Failed to update to-do item");
@@ -63,14 +62,14 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
 
 
   const markAsIncomplete = async (id: number) => {
-    if (profile && profile.email && profile.user_id) {
+    if (props.profile && props.profile.email && props.profile.user_id) {
       try {
-        const res = await fetch(`http://localhost:5000/completeItem/${id}`, {
+        const res = await fetch(`http://localhost:5000/todos/completeItem/${id}`, {
           method: "PATCH",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ completed: false, user_id: profile.user_id, email: profile.email }),
+          body: JSON.stringify({ completed: false, user_id: props.profile.user_id, email: props.profile.email }),
         });
         if (!res.ok) {
           throw new Error("Failed to update to-do item");

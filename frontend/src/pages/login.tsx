@@ -1,6 +1,6 @@
 import { Routes } from "@/constants/routes";
-import { useProfile } from "@/hooks/useProfile";
 import { useRouter } from "next/router";
+import { useProfile } from "@/hooks/useProfile";
 import { useState } from "react";
 import Form from "./component/form";
 
@@ -17,7 +17,7 @@ const Login = () => {
       try {
         setErrMsg("")
         setLoading(true)
-        const res = await fetch(`http://localhost:5000/login`, {
+        const res = await fetch(`http://localhost:5000/users/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
