@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { prismaClient } from "../db";
 import { z } from "zod";
 
@@ -13,7 +13,7 @@ const userSchema = z.object({
         .min(6, { message: "Password must be at least 6 characters long" }),
 });
 
-router.post("/register", async (req, res) => {
+router.post("/register", async (req: Request, res: Response) => {
     try {
         const { email, password } = userSchema.parse(req.body);
         const existingUser = await prismaClient.user_list.findUnique({
@@ -38,7 +38,7 @@ router.post("/register", async (req, res) => {
     }
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", async (req: Request, res: Response) => {
     try {
         const { email, password } = userSchema.parse(req.body);
         const user = await prismaClient.user_list.findUnique({

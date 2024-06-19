@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { prismaClient } from "../db";
 import { z } from "zod";
 
@@ -21,7 +21,7 @@ const removeTodoSchema = z.object({
     email: z.string(),
 });
 
-router.get("/fetchToDo", async (req, res) => {
+router.get("/fetchToDo", async (req: Request, res: Response) => {
     const { user_id, email } = req.query;
 
     try {
@@ -39,7 +39,7 @@ router.get("/fetchToDo", async (req, res) => {
     }
 });
 
-router.post("/addToDo", async (req, res) => {
+router.post("/addToDo", async (req: Request, res: Response) => {
     try {
         const { item, user_id, email } = todoSchema.parse(req.body);
         const newTodo = await prismaClient.todo_list.create({
@@ -60,7 +60,7 @@ router.post("/addToDo", async (req, res) => {
     }
 });
 
-router.delete("/deleteItem/:id", async (req, res) => {
+router.delete("/deleteItem/:id", async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const { email, user_id } = removeTodoSchema.parse(req.body);
@@ -77,7 +77,7 @@ router.delete("/deleteItem/:id", async (req, res) => {
     }
 });
 
-router.patch("/completeItem/:id", async (req, res) => {
+router.patch("/completeItem/:id", async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
         const { completed, email, user_id } = updateTodoSchema.parse(req.body);

@@ -16,14 +16,14 @@ export function useNotification(): IContext {
 }
 
 export const NotificationContext = React.createContext<IContext>(
-  {} as IContext
+  {} as IContext,
 );
 
 export const NotificationContextProvider: React.FunctionComponent<{
   children: React.ReactNode;
 }> = ({ children }) => {
   const [notification, setNotification] = useState<Notification | undefined>(
-    undefined
+    undefined,
   );
 
   useEffect(() => {

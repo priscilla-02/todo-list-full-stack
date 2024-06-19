@@ -20,7 +20,7 @@ const StyledButton: React.FC<IButton> = (props: IButton): JSX.Element => {
         <p>{props.text}</p>
       )}
     </button>
-  )
-}
+  );
+};
 
-export default StyledButton
+export default StyledButton;

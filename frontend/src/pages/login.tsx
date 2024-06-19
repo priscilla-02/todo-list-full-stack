@@ -6,17 +6,17 @@ import Form from "./component/form";
 
 const Login = () => {
   const router = useRouter();
-  const { setProfileAndStore } = useProfile()
+  const { setProfileAndStore } = useProfile();
   const [loading, setLoading] = useState<boolean>(false);
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [errMsg, setErrMsg] = useState<string>("")
+  const [errMsg, setErrMsg] = useState<string>("");
 
   const loginUser = async () => {
     if (email && password) {
       try {
-        setErrMsg("")
-        setLoading(true)
+        setErrMsg("");
+        setLoading(true);
         const res = await fetch(`http://localhost:5000/users/login`, {
           method: "POST",
           headers: {
@@ -24,24 +24,24 @@ const Login = () => {
           },
           body: JSON.stringify({ email: email, password: password }),
         });
-        const data = await res.json()
+        const data = await res.json();
 
         if (!res.ok) {
-
-          data.error[0].message ? setErrMsg(data.error[0].message) :
-            data.error ? setErrMsg(data.error)
-              : setErrMsg("")
+          data.error[0].message
+            ? setErrMsg(data.error[0].message)
+            : data.error
+              ? setErrMsg(data.error)
+              : setErrMsg("");
 
           setLoading(false);
           throw new Error("Failed to login");
         }
 
-        setProfileAndStore({ user_id: data.user.user_id, email: email })
+        setProfileAndStore({ user_id: data.user.user_id, email: email });
 
         setTimeout(() => {
-          router.push(Routes.HOMEPAGE)
+          router.push(Routes.HOMEPAGE);
         }, 2000);
-
       } catch (error) {
         setLoading(false);
         console.error("login user error", error);
@@ -50,7 +50,18 @@ const Login = () => {
   };
 
   return (
-    <Form loading={loading} header={"Login"} email={email} setEmail={setEmail} password={password} setPassword={setPassword} errMsg={errMsg} setErrMsg={setErrMsg} buttonText={"Login"} onClick={loginUser} />
+    <Form
+      loading={loading}
+      header={"Login"}
+      email={email}
+      setEmail={setEmail}
+      password={password}
+      setPassword={setPassword}
+      errMsg={errMsg}
+      setErrMsg={setErrMsg}
+      buttonText={"Login"}
+      onClick={loginUser}
+    />
   );
 };
 

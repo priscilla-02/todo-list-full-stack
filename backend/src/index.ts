@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import userRoutes from "./routes/userRoutes";
 import todoRoutes from "./routes/todoRoutes";
@@ -13,7 +13,7 @@ app.use(cors());
 app.use("/users", userRoutes);
 app.use("/todos", todoRoutes);
 
-app.get("/checkDbConnection", async (req, res) => {
+app.get("/checkDbConnection", async (req: Request, res: Response) => {
     try {
         await prismaClient.$connect();
         res.status(200).json({ message: "Prisma connected successfully" });
