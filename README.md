@@ -14,9 +14,9 @@ This setup utilizes Next.js for server-side rendering and static generation capa
 
 After successful registration and login with authentication, users can:
 
-**Create To-Do Lists** Add items to their to-do lists.
-**Mark Items as Complete/Incomplete:** Toggle the status of to-do list items.
-**Delete To-Do List Items:** Remove items from their to-do lists in a secure environment.
+-   **Create To-Do Lists** Add items to their to-do lists.
+-   **Mark Items as Complete/Incomplete:** Toggle the status of to-do list items.
+-   **Delete To-Do List Items:** Remove items from their to-do lists in a secure environment.
 
 ---
 
