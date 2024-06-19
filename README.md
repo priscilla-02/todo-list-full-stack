@@ -14,7 +14,7 @@ This setup utilizes Next.js for server-side rendering and static generation capa
 
 After successful registration and login with authentication, users can:
 
--   **Create To-Do Lists** Add items to their to-do lists.
+-   **Create To-Do Lists:** Add items to their to-do lists.
 -   **Mark Items as Complete/Incomplete:** Toggle the status of to-do list items.
 -   **Delete To-Do List Items:** Remove items from their to-do lists in a secure environment.
 
@@ -22,7 +22,7 @@ After successful registration and login with authentication, users can:
 
 ## Getting Started
 
-## Prerequisites
+## Prerequisites:
 
 -   Node.js (v 18.17.0 or above)
 -   npm or yarn
@@ -60,4 +60,4 @@ npx prisma migrate dev
 To run the app locally, run the command `npm run dev` in both backend and frontend folders.
 The front-end server will open at http://localhost:3000, and the back-end API will be accessible at http://localhost:5000 in your browser.
 
-**6. Have fun exploring! Welcome any feedback and enhancement suggestions**
+**6. Have fun exploring! Welcome any feedback and enhancement suggestions** ⭐
