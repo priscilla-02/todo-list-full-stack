@@ -28,7 +28,7 @@ body {
 
 body,
 header {
-    @apply text-white desktop:text-5xl text-2xl;
+    @apply text-white desktop:text-7xl text-4xl;
 }
 
 p {

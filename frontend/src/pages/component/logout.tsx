@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
-import { useProfile } from "@/hooks/useProfile";
 import { Routes } from "@/constants/routes";
+import { useProfile } from "@/hooks/useProfile";
 import { TbLogout } from "react-icons/tb";
 import StyledButton from "./styledButton";
 

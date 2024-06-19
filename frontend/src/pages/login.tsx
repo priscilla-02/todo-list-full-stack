@@ -37,6 +37,7 @@ const Login = () => {
         }
 
         setProfileAndStore({ user_id: data.user.user_id, email: email })
+
         setTimeout(() => {
           router.push(Routes.HOMEPAGE)
         }, 2000);
@@ -45,7 +46,6 @@ const Login = () => {
         setLoading(false);
         console.error("login user error", error);
       }
-
     }
   };
 

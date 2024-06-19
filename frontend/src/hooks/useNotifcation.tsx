@@ -8,7 +8,7 @@ interface IContext {
 }
 
 export interface Notification {
-  text: any;
+  text: string;
 }
 
 export function useNotification(): IContext {

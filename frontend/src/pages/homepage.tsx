@@ -84,7 +84,6 @@ const HomePage = () => {
     } catch (error) {
       console.error("Error adding to-do item:", error);
     }
-
   };
 
 
@@ -96,6 +95,7 @@ const HomePage = () => {
       {profile ? (
         <>
           <Logout />
+
           <section className="flex flex-col justify-center items-center gap-10 pt-28">
             <header>To-Do List</header>
             <div className="flex gap-4 px-4">
@@ -112,9 +112,9 @@ const HomePage = () => {
               </StyledButton>
             </div>
           </section>
+
           <section className="w-full flex justify-center pb-20">
             <div className=" bg-gray-600 mt-16 w-[80vw] tablet:w-[60vw] desktop:w-[30vw] flex flex-col justify-center items-center rounded-lg">
-
               {todoList && todoList.length > 0 ? (
                 todoList.map((todo: IToDo) => (
                   <TodoItem fetchTodos={fetchTodos} todo={todo} setTodoList={setTodoList} key={todo.id} profile={profile} />
@@ -122,13 +122,10 @@ const HomePage = () => {
               ) : (
                 <h1 className="flex flex-row justify-between items-center m-4">No To-Do Items...</h1>
               )}
-
             </div>
           </section>
         </>
-
       ) : (
-
         <section className="flex flex-col justify-center items-center gap-20 pt-28 px-2 text-center">
           <header>To-Do List</header>
           <div className="bg-gray-600 py-8 flex flex-col justify-center items-center gap-8 w-[80vw] max-w-[400px]">
@@ -138,7 +135,6 @@ const HomePage = () => {
             </StyledButton>
           </div>
         </section>
-
       )}
 
     </div>

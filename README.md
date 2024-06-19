@@ -30,7 +30,7 @@ After successful registration and login with authentication, users can:
 
 ## Setup Instructions:
 
-**1. Clone the repository:**a
+**1. Clone the repository:**
 
 ```
    git clone https://github.com/priscilla-02/todo-list-full-stack.git

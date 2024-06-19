@@ -1,7 +1,6 @@
 import StyledButton from "./styledButton"
 import { Bars } from 'react-loading-icons'
 
-
 interface IForm {
   loading?: boolean;
   header: string;

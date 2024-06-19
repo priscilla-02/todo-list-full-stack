@@ -25,7 +25,11 @@ const Register = () => {
         const data = await res.json()
 
         if (!res.ok) {
-          setErrMsg(data.error[0].message)
+
+          data.error[0].message ? setErrMsg(data.error[0].message) :
+            data.error ? setErrMsg(data.error)
+              : setErrMsg("")
+
           setLoading(false);
           throw new Error("Failed to register");
         }

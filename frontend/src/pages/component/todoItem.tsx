@@ -3,8 +3,6 @@ import { IToDo } from "@/pages/homepage";
 import { TiTick } from "react-icons/ti";
 import { RiDeleteBin2Line } from "react-icons/ri";
 
-
-
 interface IProps {
   fetchTodos: () => Promise<void>;
   todo: IToDo;
@@ -16,7 +14,6 @@ interface IProps {
 const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
 
   const removeToDoItem = async (id: number) => {
-
     if (props.profile && props.profile.user_id && props.profile.email) {
       try {
         const res = await fetch(`http://localhost:5000/todos/deleteItem/${id}`, {
@@ -38,7 +35,6 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
   };
 
   const markAsComplete = async (id: number) => {
-
     if (props.profile && props.profile.user_id && props.profile.email) {
       try {
         const res = await fetch(`http://localhost:5000/todos/completeItem/${id}`, {
@@ -57,9 +53,7 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
         console.error("Error updating to-do item:", error);
       }
     }
-
   };
-
 
   const markAsIncomplete = async (id: number) => {
     if (props.profile && props.profile.email && props.profile.user_id) {
@@ -101,6 +95,7 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
         </button>
         <p className="m-2 w-[30vw] tablet:w-[36vw] desktop:w-[17vw]">{props.todo.item}</p>
       </div>
+
       <div className="flex">
         <button
           className="bg-red-500 hover:bg-red-700 h-10 w-10 flex justify-center items-center rounded-lg cursor-pointer"
@@ -109,7 +104,9 @@ const TodoItem: React.FC<IProps> = (props: IProps): JSX.Element => {
           <RiDeleteBin2Line size={20} />
         </button>
       </div>
+
     </div>
   );
 };
+
 export default TodoItem;
